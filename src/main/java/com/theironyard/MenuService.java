@@ -57,7 +57,7 @@ public class MenuService {
      *
      * @return a double value which is a weight.
      */
-    // todo: create a method named promptForWidget() that returns a double
+    // todo: create a method named promptForWeight() that returns a double
 
 
         /*
