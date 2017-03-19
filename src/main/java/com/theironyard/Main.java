@@ -1,5 +1,7 @@
 package com.theironyard;
 
+import java.util.Scanner;
+
 /**
  * As we move into writing more complex software we will begin to compose our
  * applications using many classes. Each class is dedicated to some purpose. The
@@ -57,6 +59,7 @@ public class Main {
          */
 
         // todo: Create a new instance of the Scanner class. It should read from System.in.
+        Scanner newScan = scanner(System.in);
 
 
         // todo: Configure the Scanner instance to use a newline (\n) character as its delimiter

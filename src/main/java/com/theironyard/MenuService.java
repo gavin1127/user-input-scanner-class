@@ -1,4 +1,6 @@
 package com.theironyard;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * The MenuService class is used to prompt users for data and to collect that
@@ -18,6 +20,7 @@ public class MenuService {
      * the class by its constructor.
      */
     // todo: create private Scanner property
+    private static Scanner scanner;
 
 
     /**
@@ -41,6 +44,10 @@ public class MenuService {
      * @param scanner An instance of Scanner.
      */
     // todo: create MenuService constructor
+    public MenuService(Scanner scanner){
+        this.scanner = scanner;
+
+    }
 
 
 
@@ -58,6 +65,8 @@ public class MenuService {
      * @return a double value which is a weight.
      */
     // todo: create a method named promptForWeight() that returns a double
+    public static double promptForWeight() {
+
 
 
         /*
@@ -76,6 +85,7 @@ public class MenuService {
             Without it, the user wouldn't know to enter a weight.
          */
         // todo: prompt the user with "Enter a weight: "
+        System.out.println("Enter a weight: ");
 
 
 
@@ -96,6 +106,7 @@ public class MenuService {
             user's input is a double.
          */
         // todo: write if statement that checks if the user input a double
+        if (scanner.hasNextDouble()) {
 
 
             /*
@@ -105,9 +116,13 @@ public class MenuService {
                 by invoking the Scanner class' nextDouble() method.
              */
             // todo: return the double the user entered
+            return scanner.nextDouble();
+        }
 
 
         // todo: write else statement
+        else {
+
 
 
             /*
@@ -123,6 +138,9 @@ public class MenuService {
                 value and print that as a part of an error message.
              */
             // todo: read the bad input and store it in a variable
+            String notValid = scanner.nextLine();
+
+
 
             /*
                 We know we've received bad input from the user and we've read it
@@ -140,6 +158,9 @@ public class MenuService {
                 use println() or explicitly end the string with a '\n'.
              */
             // todo: print error message reading "XYZ is not a number" followed by a single linebreak
+            System.out.println(notValid + " is not a number");
+
+
 
             /*
                 Now that we've told our users what's wrong with their input. We
@@ -192,26 +213,29 @@ public class MenuService {
                 prompted for a weight until they provide a valid value.
              */
             // todo: return the results from calling promptForWeight()
+            return promptForWeight();
+        }
+    }
 
 
+        /**
+         * Create a method called promptForFromUnit(). This method accepts an
+         * ArrayList of String units and returns a valid Weight enum value that the
+         * user selects.
+         *
+         * This method's name leaves something to be desired, but is intended to
+         * prompt the user for the unit they want to convert their weight value
+         * from. These values are provided by the argument, shown in the prompt, and
+         * are also used to validate that the user provided a valid data.
+         *
+         * Follow the instructions below to build out this method.
+         *
+         * @param units An ArrayList of String values that are valid units
+         * @return A Weight enum value corresponding to the user's selected unit
+         */
+        // todo: implement promptForFromUnit() method
+            public Weight promptForFromUnit(ArrayList<String> units) {
 
-
-    /**
-     * Create a method called promptForFromUnit(). This method accepts an
-     * ArrayList of String units and returns a valid Weight enum value that the
-     * user selects.
-     *
-     * This method's name leaves something to be desired, but is intended to
-     * prompt the user for the unit they want to convert their weight value
-     * from. These values are provided by the argument, shown in the prompt, and
-     * are also used to validate that the user provided a valid data.
-     *
-     * Follow the instructions below to build out this method.
-     *
-     * @param units An ArrayList of String values that are valid units
-     * @return A Weight enum value corresponding to the user's selected unit
-     */
-    // todo: implement promptForFromUnit() method
 
         /*
             We need to prompt the user for the unit they are converting from.
@@ -232,7 +256,9 @@ public class MenuService {
             be automatically added via println() or manually added using '\n'
             with a different print function.
          */
-        // todo: prompt the user for the unit to convert from
+                // todo: prompt the user for the unit to convert from
+                System.out.println("Select the unit to convert from " + units + ": ");
+                System.out.println('\n');
 
 
 
@@ -247,7 +273,8 @@ public class MenuService {
 
             You should save this data into variable.
          */
-        // todo: read the next line of input using the next() method and save it in a variable
+                // todo: read the next line of input using the next() method and save it in a variable
+                String input = scanner.next();
 
 
 
@@ -271,7 +298,9 @@ public class MenuService {
             In other words, you need to write an if block that checks if the
             user's input is not a valid unit.
          */
-        // todo: write if statement that checks if the user's input is not a valid unit
+                // todo: write if statement that checks if the user's input is not a valid unit
+                if (!units.contains(input)) {
+
 
             /*
                 If the user's input is not a valid unit them we need to print a
@@ -281,7 +310,9 @@ public class MenuService {
 
                 It must be followed by a single line break character.
              */
-            // todo: print error message reading "Please choose a valid unit to convert from." followed by a single linebreak
+                    // todo: print error message reading "Please choose a valid unit to convert from." followed by a single linebreak
+                    System.out.println("Please choose a valid unit to convert from.");
+                    System.out.println('\n');
 
 
             /*
@@ -291,10 +322,13 @@ public class MenuService {
                 promptForFromUnit() again. Be sure to pass in the list of units
                 we received when we re-invoke promptForFromUnit().
              */
-            // todo: return the result of calling promptForFromUnit() again
+                    // todo: return the result of calling promptForFromUnit() again
+                    return promptForFromUnit(units);
+                }
 
 
-            // todo: write else statement
+                // todo: write else statement
+                else {
 
             /*
                 If the user's input was valid we need to convert it to a valid
@@ -309,30 +343,50 @@ public class MenuService {
                 need to replace the space with an underscore. You can do this
                 using the String class' replaceAll() method.
              */
-            // todo: return the Weight enum value corresponding to the unit the user typed in
+                    // todo: return the Weight enum value corresponding to the unit the user typed in
+                    return Weight.valueOf(input.toUpperCase().replaceAll(" ", "_"));
+                }
+            }
 
 
 
 
-    /**
-     * Create a method named promptForToUnit(). This method works exactly the
-     * same as the promptForFromUnit() method, except that its prompts read:
-     *
-     * "Select the unit to convert from [gram, pound, stone]: "
-     *
-     * In the example above, the units listed are driven based on the provided
-     * ArrayList of Strings.
-     *
-     * If the user makes an invalid selection the error message reads:
-     *
-     * "Please choose a valid unit to convert to."
-     *
-     * Other than that, this method is the same as promptForFromUnit().
-     *
-     * @param units A List of String values that are valid units
-     * @return A Weight enum value corresponding to the user's selected unit
-     */
-    // todo: implement promptForToUnit() method
+                    /**
+                     * Create a method named promptForToUnit(). This method works exactly the
+                     * same as the promptForFromUnit() method, except that its prompts read:
+                     *
+                     * "Select the unit to convert from [gram, pound, stone]: "
+                     *
+                     * In the example above, the units listed are driven based on the provided
+                     * ArrayList of Strings.
+                     *
+                     * If the user makes an invalid selection the error message reads:
+                     *
+                     * "Please choose a valid unit to convert to."
+                     *
+                     * Other than that, this method is the same as promptForFromUnit().
+                     *
+                     * @param units A List of String values that are valid units
+                     * @return A Weight enum value corresponding to the user's selected unit
+                     */
+                    // todo: implement promptForToUnit() method
+                public Weight promptForToUnit (ArrayList < String > units) {
+                    String input = scanner.next();
+
+                    System.out.println("Select the unit to convert" + units + ":");
+                    System.out.println('\n');
+
+                    if (!units.contains(input)) {
+                        System.out.println("Please choose a valid unit to convert to.");
+                        System.out.println('\n');
+                        return promptForFromUnit(units);
+
+                    } else {
+                        return Weight.valueOf(input.toUpperCase());
+                    }
+
+                }
+
 
 
 
@@ -340,28 +394,32 @@ public class MenuService {
      * Create a method named printAnswer(). It should accept arguments for the
      * weight to convert, the unit being converted from, the unit being
      * converted to, and the converted value. It returns nothing.
-     *
+     * <p>
      * When invoked, this method prints a message like this:
-     *
+     * <p>
      * "ABC in Xs is XYZ in Qs"
-     *
+     * <p>
      * Where ABC is the weight being converted, X is the unit being converted
      * from, XYZ is the converted value, and Q is the unit converted to. Here's
      * a real example:
-     *
+     * <p>
      * "321.0 pounds is 145603.15077 grams"
-     *
+     * <p>
      * Pay attention to plurals, but don't worry about singulars. In other
      * words, it's ok to always write pounds, even "1 pounds".
-     *
+     * <p>
      * The output must be followed by a single newline character.
      *
-     * @param number The weight being converted
-     * @param from The unit being converted from
+     * @param number    The weight being converted
+     * @param from      The unit being converted from
      * @param converted The converted value
-     * @param to The unit of the converted value
+     * @param to        The unit of the converted value
      */
     // todo: implement printAnswer() method
-
-
+    public void printAnswer(double number, Weight from, double converted, Weight to) {
+        System.out.printf("%s %ss is %s %ss",
+                number, from.toString().toLowerCase(),
+                converted, to.toString().toLowerCase()
+        );
+    }
 }
