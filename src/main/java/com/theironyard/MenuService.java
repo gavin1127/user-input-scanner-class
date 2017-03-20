@@ -20,7 +20,7 @@ public class MenuService {
      * the class by its constructor.
      */
     // todo: create private Scanner property
-    private static Scanner scanner;
+    private Scanner scanner;
 
 
     /**
@@ -65,7 +65,7 @@ public class MenuService {
      * @return a double value which is a weight.
      */
     // todo: create a method named promptForWeight() that returns a double
-    public static double promptForWeight() {
+    public double promptForWeight() {
 
 
 
@@ -159,6 +159,7 @@ public class MenuService {
              */
             // todo: print error message reading "XYZ is not a number" followed by a single linebreak
             System.out.println(notValid + " is not a number");
+            System.out.println();
 
 
 
@@ -257,8 +258,8 @@ public class MenuService {
             with a different print function.
          */
                 // todo: prompt the user for the unit to convert from
-                System.out.println("Select the unit to convert from " + units + ": ");
-                System.out.println('\n');
+                System.out.println("Select the unit to convert from " + units + ":" );
+                System.out.println();
 
 
 
@@ -311,8 +312,7 @@ public class MenuService {
                 It must be followed by a single line break character.
              */
                     // todo: print error message reading "Please choose a valid unit to convert from." followed by a single linebreak
-                    System.out.println("Please choose a valid unit to convert from.");
-                    System.out.println('\n');
+                    System.out.println("Please choose a valid unit to convert to.");
 
 
             /*
@@ -373,12 +373,12 @@ public class MenuService {
                 public Weight promptForToUnit (ArrayList < String > units) {
                     String input = scanner.next();
 
-                    System.out.println("Select the unit to convert" + units + ":");
-                    System.out.println('\n');
+                    System.out.println("Select the unit to convert to " + units + ":");
+
 
                     if (!units.contains(input)) {
                         System.out.println("Please choose a valid unit to convert to.");
-                        System.out.println('\n');
+
                         return promptForFromUnit(units);
 
                     } else {
