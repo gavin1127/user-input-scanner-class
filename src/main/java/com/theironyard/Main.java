@@ -59,17 +59,21 @@ public class Main {
          */
 
         // todo: Create a new instance of the Scanner class. It should read from System.in.
+        Scanner newScan = new Scanner(System.in);
 
 
         // todo: Configure the Scanner instance to use a newline (\n) character as its delimiter
+        newScan.useDelimiter("\n");
 
 
 
         // todo: Create a new instance of the ConversionService
+        ConversionService conversionService = new ConversionService();
 
 
 
         // todo: Create a new instance of the MenuService. Pass the Scanner instance you created earlier into the MenuService's constructor
+        MenuService menuService = new MenuService(newScan);
 
 
 
@@ -90,6 +94,7 @@ public class Main {
             returns a double number that we will be converting.
          */
         // todo: Invoke the MenuService's promptForWeight() method.
+        double weight = menuService.promptForWeight();
 
 
 
@@ -103,10 +108,12 @@ public class Main {
             simpler.
          */
         // todo: Invoke the MenuService's promptForFromUnit() method.
+        Weight from = menuService.promptForFromUnit(conversionService.listUnits());
 
 
 
         // todo: Invoke the MenuService's promptForToUnit() method.
+        Weight to = menuService.promptForFromUnit(conversionService.listUnits());
 
 
 
@@ -119,6 +126,7 @@ public class Main {
             ConversionService's convert() method.
          */
         // todo: Invoke the ConversionService's convert() method.
+        double conversion = conversionService.convert(weight, from, to);
 
 
 
@@ -129,6 +137,7 @@ public class Main {
             and end the program.
          */
         //todo: Print the answer using the MenuService's printAnswer() method
+        menuService.printAnswer(weight, from, conversion, to);
 
 
 

@@ -159,7 +159,7 @@ public class MenuService {
              */
             // todo: print error message reading "XYZ is not a number" followed by a single linebreak
             System.out.println(notValid + " is not a number");
-            System.out.println();
+
 
 
 
@@ -259,7 +259,7 @@ public class MenuService {
          */
                 // todo: prompt the user for the unit to convert from
                 System.out.println("Select the unit to convert from " + units + ":" );
-                System.out.println();
+
 
 
 
@@ -312,7 +312,7 @@ public class MenuService {
                 It must be followed by a single line break character.
              */
                     // todo: print error message reading "Please choose a valid unit to convert from." followed by a single linebreak
-                    System.out.println("Please choose a valid unit to convert to.");
+                    System.out.println("Please choose a valid unit to convert from.");
 
 
             /*
@@ -379,7 +379,7 @@ public class MenuService {
                     if (!units.contains(input)) {
                         System.out.println("Please choose a valid unit to convert to.");
 
-                        return promptForFromUnit(units);
+                        return promptForToUnit(units);
 
                     } else {
                         return Weight.valueOf(input.toUpperCase());
